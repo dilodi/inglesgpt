@@ -41,12 +41,14 @@ const LLM = memo(() => {
             <Input.Password
               autoComplete={'new-password'}
               placeholder={
-                useAzure ? t('llm.azure.token.placeholder') : t('llm.openai.token.placeholder')
+                useAzure
+                  ? t('llm.AzureOpenAI.token.placeholder')
+                  : t('llm.OpenAI.token.placeholder')
               }
             />
           ),
-          desc: useAzure ? t('llm.azure.token.desc') : t('llm.openai.token.desc'),
-          label: useAzure ? t('llm.azure.token.title') : t('llm.openai.token.title'),
+          desc: useAzure ? t('llm.AzureOpenAI.token.desc') : t('llm.OpenAI.token.desc'),
+          label: useAzure ? t('llm.AzureOpenAI.token.title') : t('llm.OpenAI.token.title'),
           name: [LLMProviderConfigKey, providerKey, 'OPENAI_API_KEY'],
         },
         {
@@ -55,31 +57,31 @@ const LLM = memo(() => {
               allowClear
               placeholder={
                 useAzure
-                  ? t('llm.azure.endpoint.placeholder')
-                  : t('llm.openai.endpoint.placeholder')
+                  ? t('llm.AzureOpenAI.endpoint.placeholder')
+                  : t('llm.OpenAI.endpoint.placeholder')
               }
             />
           ),
-          desc: useAzure ? t('llm.azure.endpoint.desc') : t('llm.openai.endpoint.desc'),
-          label: useAzure ? t('llm.azure.endpoint.title') : t('llm.openai.endpoint.title'),
+          desc: useAzure ? t('llm.AzureOpenAI.endpoint.desc') : t('llm.OpenAI.endpoint.desc'),
+          label: useAzure ? t('llm.AzureOpenAI.endpoint.title') : t('llm.OpenAI.endpoint.title'),
           name: [LLMProviderConfigKey, providerKey, 'endpoint'],
         },
         {
           children: (
             <Input.TextArea
               allowClear
-              placeholder={t('llm.openai.customModelName.placeholder')}
+              placeholder={t('llm.OpenAI.customModelName.placeholder')}
               style={{ height: 100 }}
             />
           ),
-          desc: t('llm.openai.customModelName.desc'),
-          label: t('llm.openai.customModelName.title'),
+          desc: t('llm.OpenAI.customModelName.desc'),
+          label: t('llm.OpenAI.customModelName.title'),
           name: [LLMProviderConfigKey, providerKey, 'customModelName'],
         },
         {
           children: <Switch />,
-          desc: t('llm.openai.useAzure.desc'),
-          label: t('llm.openai.useAzure.title'),
+          desc: t('llm.OpenAI.useAzure.desc'),
+          label: t('llm.OpenAI.useAzure.title'),
           minWidth: undefined,
           name: [LLMProviderConfigKey, 'openAI', 'useAzure'],
           valuePropName: 'checked',
@@ -104,11 +106,11 @@ const LLM = memo(() => {
           ),
           desc: (
             <Markdown className={styles.markdown} fontSize={12} variant={'chat'}>
-              {t('llm.openai.azureApiVersion.desc')}
+              {t('llm.OpenAI.azureApiVersion.desc')}
             </Markdown>
           ),
           hidden: !useAzure,
-          label: t('llm.openai.azureApiVersion.title'),
+          label: t('llm.OpenAI.azureApiVersion.title'),
           name: [LLMProviderConfigKey, providerKey, 'azureApiVersion'],
         },
         {
@@ -119,7 +121,7 @@ const LLM = memo(() => {
         },
       ]}
       provider={providerKey}
-      title={<OpenAI.Combine size={24} />}
+      title={<OpenAI.Combine size={24}></OpenAI.Combine>}
     />
   );
 });
